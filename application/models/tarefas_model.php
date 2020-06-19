@@ -30,4 +30,28 @@
 		{
 			return $this->db->count_all("tarefas");
  		}
+
+ 		public function excluir_tarefa($id_tarefa)
+ 		{
+ 			$this->db->where('id_tarefa', $id_tarefa);
+			return $this->db->delete('tarefas');
+ 		}
+
+ 		public function buscar($id_tarefa)
+ 		{
+ 			$this->db->where('id_tarefa', $id_tarefa);
+			return $this->db->get('tarefas')->row_array();
+ 		}
+
+ 		public function atualizar($dados, $id_linha)
+ 		{
+ 			$this->db->where("id_tarefa", $id_linha);
+ 			return $this->db->update("tarefas", $dados);
+ 		}
+
+ 		public function criar($dados)
+ 		{
+ 			return $this->db->insert("tarefas", $dados);
+ 		}
+
 	}

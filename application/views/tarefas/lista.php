@@ -21,7 +21,7 @@
 
 					$atualizado_em_format = empty($tarefa['atualizado_em']) ? '' : new \DateTime($tarefa['atualizado_em']);
 				?>
-				<tr>
+				<tr id="<?= $tarefa['id_tarefa']; ?>">
 					<td><?= $tarefa['responsavel_nome'] ?></td>
 					<td><?= $tarefa['descricao'] ?></td>
 					<td><?= $tarefa['categoria_nome'] ?></td>
@@ -35,10 +35,54 @@
 						<?= empty($tarefa['atualizado_em']) ? '' : $atualizado_em_format->format('Y-m-d H:i:s'); ?>
 						
 					</td>
-					<td>EDITAR</td>
-					<td>EXCLUIR</td>
+					<?php $link_edicao = "/tarefa/editar/".$tarefa['id_tarefa']; ?>
+					<td><a href="<?= site_url($link_edicao); ?>" class="btn btn-warning">Editar</a></td>
+					<td><button class="btn btn-danger" onclick="excluir_linha(this)">Excluir</button></td>
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="8"><a href="<?= site_url('/tarefa/editar/'); ?>" class="btn btn-primary">Adicionar Tarefa</a></td>
+			</tr>
+		</tfoot>
 	</table>
 </div>
+
+<script type="text/javascript">
+	function excluir_linha(btn)
+	{
+		var conf = confirm("Deseja realmente deletar este registro?");
+		if (conf == true) 
+		{
+			var linha = $(btn).parent().parent();
+			
+			url_exc = "<?= base_url().'index.php/tarefa/excluir' ?>";
+
+			//faz req ajax
+			$.ajax({
+				url: url_exc,
+				type: 'POST',
+				dataType: 'json',
+				data: { id_tarefa: linha.attr("id") }
+			})
+			.done(function(dados) {
+				if(dados["op"]) {
+					linha.remove();	
+				}
+				else {
+					alert("Id do registro não localizado");
+				}
+			})
+			.fail(function(e) {
+				alert("Erro ao realizar a exclusão");
+			})
+			
+		} 
+
+	};
+
+
+</script>
+
+
