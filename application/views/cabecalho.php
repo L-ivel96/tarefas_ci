@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+	<title><?= $titulo; ?></title>
 	<link rel="stylesheet" href="<?= base_url("css/bootstrap.css") ?>">
 	<script src="<?= base_url("js/jquery_3_4_1_min.js") ?>"></script>
 	<script src="<?= base_url("js/bootstrap.min.js") ?>"></script>
@@ -18,4 +19,9 @@
 	</nav>
 
 	<div class="container">
-		<div class="" id="avisos"></div>
+		<?php if($this->session->flashdata("success"))  : ?>
+			<p class="alert alert-success"><?= $this->session->flashdata("success") ?></p>
+		<?php endif ?>
+		<?php if($this->session->flashdata("danger"))  : ?>
+			<p class="alert alert-danger"><?= $this->session->flashdata("danger") ?></p>
+		<?php endif ?>

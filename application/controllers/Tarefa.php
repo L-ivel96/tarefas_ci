@@ -5,7 +5,7 @@ class Tarefa extends CI_Controller {
 
 	public function index()
 	{
-		$dados = "";
+		$dados = array('titulo' => 'Listar Tarefas');
 		$this->load->template("tarefas/lista", $dados);
 	}
 }
