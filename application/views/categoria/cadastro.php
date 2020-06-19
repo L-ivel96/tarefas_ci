@@ -15,7 +15,7 @@
 				"name" => "categoria",
 				"class" => "form-control",
 				"id" => "categoria",
-				"maxlength" => "200",
+				"maxlength" => "45",
 				"placeholder" => "Nome da Categoria",
 				"required" => "required"
 			));
@@ -30,7 +30,7 @@
 				"descricao" => "descricao",
 				"class" => "form-control",
 				"id" => "descricao",
-				"maxlength" => "200",
+				"maxlength" => "300",
 				"placeholder" => "Descrição (Opcional)"
 			));
 		?>
