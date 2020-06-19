@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Tarefa extends CI_Controller {
 
-	public function index($pagina = 1)
+	public function index()
 	{
 		$this->load->library('pagination');
 
 		$this->load->model("tarefas_model");;
 
 		$dados_tarefas = $this->tarefas_model->listar_tarefas();
-		
+
 		$dados = array(
 			'titulo' => 'Listar Tarefas',
 			'dados_tarefas' => $dados_tarefas
@@ -66,7 +66,7 @@ class Tarefa extends CI_Controller {
 			$dados['tipo'] = 'edicao';
 		}
 
-		$this->output->enable_profiler(TRUE);
+		//$this->output->enable_profiler(TRUE);
 		$this->load->template("tarefas/editar", $dados);
 
 	}
@@ -83,7 +83,7 @@ class Tarefa extends CI_Controller {
 		$dados['categoria'] = $this->input->post("categoria");
 		$data = new \DateTime('now');
 
-		$dados['atualizado_em'] = $data->format('Y-m-d H:s:i');
+		$dados['atualizado_em'] = $data->format('Y-m-d H:i:s');
 
 		//Valida dados
 		if(

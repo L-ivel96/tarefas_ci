@@ -51,7 +51,12 @@
 
  		public function criar($dados)
  		{
- 			return $this->db->insert("tarefas", $dados);
+ 			if ($this->db->insert("tarefas", $dados)) {
+ 				return $this->db->insert_id();
+ 			}
+ 			else {
+ 				return false;
+ 			}
  		}
 
 	}
