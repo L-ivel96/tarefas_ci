@@ -9,6 +9,7 @@
  		public function listar()
 		{
 			$this->db->from('responsavel');
+			$this->db->order_by('nome', 'asc');
 			return $this->db->get()->result_array();
 		}
 	}

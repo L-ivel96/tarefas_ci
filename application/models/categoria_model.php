@@ -9,6 +9,7 @@
  		public function listar()
 		{
 			$this->db->from('categoria');
+			$this->db->order_by('categoria', 'asc');
 			return $this->db->get()->result_array();
 		}
 
